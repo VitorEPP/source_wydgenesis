@@ -663,7 +663,7 @@ int CFileDB::ProcessMessage(char *Msg, int conn)
 		std::string filepass = file.Info.AccountPass;
 
 
-		snprintf(hQuery, sizeof(hQuery), "SELECT * FROM `accounts` WHERE `username` = '%s'", m->AccountLogin);
+		sprintf(hQuery, "SELECT * FROM `accounts` WHERE `username` = '%s'", m->AccountLogin);
 		MYSQL_ROW row;
 		MYSQL* wSQL = pc.wStart();
 		MYSQL_RES* result = pc.wRes(wSQL, hQuery);
@@ -684,21 +684,9 @@ int CFileDB::ProcessMessage(char *Msg, int conn)
 
 		if (_username == "")
 		{
-
-			/*if (pUser[conn].DelayCriarConta + 60000 > CurrentTime)
-			{
-				SendDBSignal(conn, m->ID, _MSG_DBAccountLoginCreateAccount_PassFail);
-				return TRUE;
-			}
-			pUser[conn].DelayCriarConta = CurrentTime;*/
-
-
-
-			SendDBSignal(conn, m->ID, _MSG_DBAccountLoginCreateAccount_Pass);
-
-			snprintf(xQuery, sizeof(xQuery), "INSERT INTO accounts (username, password) VALUES ('%s','%s')", m->AccountLogin, m->AccountPassword);
-			pc.wQuery(xQuery);
-
+			SendDBSignal(conn, m->ID, _MSG_DBAccountLoginFail_Account);
+			//sprintf(xQuery, "INSERT INTO users (username, password) VALUES ('%s','%s')", m->AccountLogin, m->AccountPassword);
+			//pc.wQuery(xQuery);
 			return TRUE;
 		}
 

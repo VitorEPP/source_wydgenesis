@@ -77,8 +77,8 @@ bool HookNaked::Start()
 		//Novas Composições
 		WYD.SetHook(eHookType::JMP, 0x498ACD, WYD.GetPtr(&HookNaked::NKD_NewNPCComp));
 
-		WYD.SetValue(0x043b2f5 + 1, WYD.GetPtr("http://192.168.0.176/guilds/img_guilds/"));/*Altera endereço das img das guildas*/
-		WYD.SetValue(0x043b111 + 1, WYD.GetPtr("http://192.168.0.176/guilds/img_guilds/"));/*Altera endereço das img das guildas*/
+		WYD.SetValue(0x043b2f5 + 1, WYD.GetPtr("http://192.168.0.176:3000/guilds/img_guilds/"));/*Altera endereço das img das guildas*/
+		WYD.SetValue(0x043b111 + 1, WYD.GetPtr("http://192.168.0.176:3000/guilds/img_guilds/"));/*Altera endereço das img das guildas*/
 
 		/* Hook On - Client Speak Message */
 		WYD.SetHook(eHookType::JMP, 0x004A0164, WYD.GetPtr(&HookNaked::NKD_SpeakChatColor), 0);
